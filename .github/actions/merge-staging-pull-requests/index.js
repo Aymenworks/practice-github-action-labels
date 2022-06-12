@@ -26,6 +26,6 @@ async function run() {
         state: "open",
       });
       return data.data.filter(pr => {
-        r.draft === false && pr.labels.some(l => l.name === "Staging")
+        pr.draft === false && pr.labels.some(l => l.name === "Staging")
       });
   }
