@@ -27,6 +27,6 @@ async function run() {
         state: "open",
       });
       return data.data.filter(pr => {
-        !pr.draft && pr.labels.includes({name: "Staging"})
+        (pr.draft == null || pr.draft == false) && pr.labels.includes({name: "Staging"})
       });
   }
