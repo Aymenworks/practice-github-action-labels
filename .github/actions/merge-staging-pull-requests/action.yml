@@ -1,0 +1,12 @@
+name: 'Merging PRs with staging label.'
+description: 'Merging PRs with staging label automatically.'
+author: 'Eureka Backend Team'
+
+inputs:
+  GITHUB_TOKEN:
+    description: 'GitHub token'
+    required: true
+
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
