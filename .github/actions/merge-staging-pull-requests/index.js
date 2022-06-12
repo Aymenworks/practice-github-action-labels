@@ -14,7 +14,7 @@ async function run() {
     console.log(`owner=${owner}, repo=${repo}`);
     const data = await fetchStagingPRs();
     data.forEach(pr => {
-        console.log(`PR ${pr.title} url=${pr.url}, id=${pr.id}`)
+        console.log(`PR ${pr.title} url=${pr.url}, id=${pr.id} draft=${pr.draft !== true}`)
     });
     console.log(data)
   }
@@ -26,6 +26,6 @@ async function run() {
         state: "open",
       });
       return data.data.filter(pr => {
-        pr.draft !== true && pr.labels.some(l => l.name === "Staging")
+        pr.labels.some(l => l.name === "Staging")
       });
   }
