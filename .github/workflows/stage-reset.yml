@@ -34,7 +34,7 @@ jobs:
           git push -f origin stage
     
       - name: listPullRequests
-        uses: aymenworks/list-pull-requests@v1.1
+        uses: aymenworks/list-pull-requests@v1.1.1
         id: list
         with:
           token: ${{secrets.GITHUB_TOKEN}}
