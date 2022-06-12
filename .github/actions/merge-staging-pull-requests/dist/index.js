@@ -59459,21 +59459,24 @@ try {
 
 async function run() {
     console.log(`owner=${owner}, repo=${repo}`);
-    const data = await fetchPRs();
-    data.data.array.forEach(pr => {
+    const data = await fetchStagingPRs();
+    data.forEach(pr => {
         console.log(`PR ${pr.title} url=${pr.url}`)
     });
     console.log("data=");
     console.log(data)
   }
 
-  async function fetchPRs() {
+  async function fetchStagingPRs() {
     const data = await octokit.rest.pulls.list({
         owner,
         repo,
         state: "open",
       });
-      return data;
+      return data.data;
+      return data.data.filter(pr => {
+        pr.labels.includes({name: "Staging"})
+      });
   }
 })();
 
