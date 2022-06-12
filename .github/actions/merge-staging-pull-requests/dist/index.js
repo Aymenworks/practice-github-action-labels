@@ -59461,9 +59461,8 @@ async function run() {
     console.log(`owner=${owner}, repo=${repo}`);
     const data = await fetchStagingPRs();
     data.forEach(pr => {
-        console.log(`PR ${pr.title} url=${pr.url}, isDraft=${pr.draft == false}, hasStaging=${pr.labels.some(l => l.name === "Stagins")}`)
+        console.log(`PR ${pr.title} url=${pr.url}, id=${pr.id}`)
     });
-    console.log("data=");
     console.log(data)
   }
 
@@ -59473,9 +59472,8 @@ async function run() {
         repo,
         state: "open",
       });
-      return data.data;
       return data.data.filter(pr => {
-        (pr.draft == null || pr.draft == false) && pr.labels.includes({name: "Staging"})
+        r.draft === false && pr.labels.some(l => l.name === "Staging")
       });
   }
 })();
