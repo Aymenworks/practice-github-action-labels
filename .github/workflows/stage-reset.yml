@@ -33,9 +33,12 @@ jobs:
           git checkout -b stage
           git push -f origin stage
     
-      - name: Merge PRs with Staging label
-        uses: devmasx/merge-branch@master
+      - name: listPullRequests
+        uses: aymenworks/list-pull-requests@v1.1.1
+        id: list
         with:
-          label_name: 'Staging'
-          target_branch: 'stage'
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{secrets.GITHUB_TOKEN}}
+          labels: '["Staging"]'
+          skip_hour: '0'
+      - name: output
+        run: echo '${{ steps.list.outputs.pulls }}'
