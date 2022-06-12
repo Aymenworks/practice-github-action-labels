@@ -59473,7 +59473,7 @@ async function run() {
         state: "open",
       });
       return data.data.filter(pr => {
-        pr.draft === false && pr.labels.some(l => l.name === "Staging")
+        pr.draft !== true && pr.labels.some(l => l.name === "Staging")
       });
   }
 })();
