@@ -34,7 +34,7 @@ jobs:
           git push -f origin stage
     
       - name: listPullRequests
-        uses: buildsville/list-pull-requests@v1
+        uses: aymenworks/merge-staging-pull-requests@v1
         id: list
         with:
           token: ${{secrets.GITHUB_TOKEN}}
