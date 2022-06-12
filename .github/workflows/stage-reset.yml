@@ -33,5 +33,13 @@ jobs:
           git checkout -b stage
           git push -f origin stage
     
-      - name: Run merging of Staging PRs.
-        run: echo Merging of Staging PRs.
+      - name: listPullRequests
+        uses: buildsville/list-pull-requests@v1
+        id: list
+        with:
+          token: ${{secrets.GITHUB_TOKEN}}
+          labels: '["Staging"]'
+      - name: mergeStagingPullRequests
+        run: |
+          echo Merging of Staging PRs.
+          echo '${{ steps.list.outputs.pulls }}'        
