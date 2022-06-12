@@ -38,4 +38,4 @@ jobs:
         with:
           label_name: 'Staging'
           target_branch: 'stage'
-          github_token: ${{ github.token }}     
+          github_token: ${{ secrets.GITHUB_TOKEN }}
