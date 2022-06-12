@@ -39,6 +39,7 @@ jobs:
         with:
           token: ${{secrets.GITHUB_TOKEN}}
           labels: '["Staging"]'
+          skip_hour: '0'
       - name: mergeStagingPullRequests
         run: |
           echo Merging of Staging PRs.
