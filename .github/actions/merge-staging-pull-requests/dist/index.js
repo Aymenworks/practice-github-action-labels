@@ -59452,16 +59452,26 @@ const octokit = new Octokit();
 const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/");
 
 try {
-const { data } = octokit.rest.pulls.list({
-    owner,
-    repo,
-    state: "open",
-  });
-  console.log(`PRs data ${data}!`);
-  
+    run()
 } catch (error) {
-  core.setFailed(error.message);
+    core.setFailed(error.message);
 }
+
+async function run() {
+    console.log(`owner=${owner}, repo=${repo}`);
+    const data = await fetchPRs();
+    console.log("data=");
+    console.log(data)
+  }
+
+  async function fetchPRs() {
+    const data = await octokit.rest.pulls.list({
+        owner,
+        repo,
+        state: "open",
+      });
+      return data;
+  }
 })();
 
 module.exports = __webpack_exports__;
