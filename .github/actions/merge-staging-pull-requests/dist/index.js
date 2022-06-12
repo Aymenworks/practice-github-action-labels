@@ -59473,9 +59473,8 @@ async function run() {
         repo,
         state: "open",
       });
-      return data.data;
       return data.data.filter(pr => {
-        pr.labels.includes({name: "Staging"})
+        !pr.draft && pr.labels.includes({name: "Staging"})
       });
   }
 })();
