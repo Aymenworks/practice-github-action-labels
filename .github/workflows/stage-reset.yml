@@ -37,5 +37,5 @@ jobs:
         uses: devmasx/merge-branch@master
         with:
           label_name: 'Staging'
-          target_branch: 'stage'
+          target_branch: stage
           github_token: ${{ secrets.GITHUB_TOKEN }}
