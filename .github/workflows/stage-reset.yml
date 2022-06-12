@@ -34,6 +34,6 @@ jobs:
           git push -f origin stage
     
       - name: listPullRequests
-        uses: ./github/actions/merge-staging-pull-requests@v1.1
+        uses: .github/actions/merge-staging-pull-requests@v1.1
         with:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
