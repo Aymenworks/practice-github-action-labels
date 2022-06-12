@@ -38,7 +38,7 @@ jobs:
         id: list
         with:
           token: ${{secrets.GITHUB_TOKEN}}
-          labels: '["WFR"]'
+          labels: '["Staging"]'
           skip_hour: '0'
       - name: output
         run: echo '${{ steps.list.outputs.pulls }}'
