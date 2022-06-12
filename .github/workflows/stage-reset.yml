@@ -33,5 +33,5 @@ jobs:
           git checkout -b stage
           git push -f origin stage
     
-      - name: Run merging of Staging PR's.
-        run: echo Merging of Staging PR's.
+      - name: Run merging of Staging PRs.
+        run: echo Merging of Staging PRs.
