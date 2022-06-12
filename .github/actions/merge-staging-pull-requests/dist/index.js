@@ -59455,7 +59455,7 @@ try {
 const { data } = octokit.rest.pulls.list({
     owner,
     repo,
-    state: open,
+    state: "open",
   });
   console.log(`PRs data ${data}!`);
   
