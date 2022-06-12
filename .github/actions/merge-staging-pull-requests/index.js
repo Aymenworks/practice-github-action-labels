@@ -13,6 +13,9 @@ try {
 async function run() {
     console.log(`owner=${owner}, repo=${repo}`);
     const data = await fetchPRs();
+    data.data.array.forEach(pr => {
+        console.log(`PR ${pr.title} url=${pr.url}`)
+    });
     console.log("data=");
     console.log(data)
   }
