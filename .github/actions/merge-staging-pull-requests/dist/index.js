@@ -59459,11 +59459,13 @@ try {
 
 async function run() {
     console.log(`owner=${owner}, repo=${repo}`);
-    const data = await fetchStagingPRs();
-    data.forEach(pr => {
-        console.log(`PR ${pr.title} url=${pr.url}, id=${pr.id} draft=${pr.draft !== true}, hasStaging=${pr.labels.some(l => l.name === "Staging")}`)
-    });
-    console.log(data)
+    const pullRequestsList = await fetchStagingPRs();
+    for (let index = 0; index < pullRequestsList.length; index++) {
+        const pr = pullRequestsList[index];
+        console.log(`Merging pr ${pr.title}`)
+        const response = await mergePRToStaging(pr.head.ref)
+        console.log(`response status ${response.status}`)
+    }
   }
 
   async function fetchStagingPRs() {
@@ -59475,6 +59477,17 @@ async function run() {
       return data.data.filter(pr => {
             return pr.draft !== true && pr.labels.some(l => l.name === "Staging")
       });
+  }
+
+  async function mergePRToStaging(head) {
+      // handle merge conflicts
+    const response = await octokit.rest.repos.merge({
+        owner,
+        repo,
+        base: 'stage',
+        head,
+      });
+      return response;
   }
 })();
 
