@@ -33,7 +33,7 @@ jobs:
           git checkout -b stage
           git push -f origin stage
     
-      - name: listPullRequests
+      - name: mergeStagingPRs
         uses: ./.github/actions/merge-staging-pull-requests
         with:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
