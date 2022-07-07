@@ -18,6 +18,7 @@ async function run() {
         const pr = pullRequestsList[index];
         console.log(`Start Merging Pull Request "${pr.title}"`)
         try {
+            await resetMergeLabelsIfNecessary(pr)
             const mergeResponse = await mergePRToStaging(pr.head.ref)
             console.log(mergeResponse.status)
             const labelResponse = await addLabelForMerge(pr.number, labelMergedToStaging)
@@ -33,6 +34,19 @@ async function run() {
         }
     }
     console.log(`Finish merging all Staging PRs`)
+  }
+
+  async function resetMergeLabelsIfNecessary(pr) {
+    pr.labels.forEach(async (label) => {
+        if (label.name == labelMergeConflictToStaging || label.name == labelMergedToStaging) {
+            await octokit.issues.removeLabel({
+                owner,
+                repo,
+                issue_number: pr.number,
+                name: label.name
+              });
+        }
+    });
   }
 
   async function fetchStagingPRs() {
