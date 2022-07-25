@@ -52,5 +52,5 @@ jobs:
       - name: Deploy merged PRs
         run: |
           git checkout stage
-          git pull
-          git push 
+          git pull --ff-only
+          git push origin stage
