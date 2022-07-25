@@ -50,3 +50,7 @@ jobs:
         uses: ./.github/actions/merge-staging-pull-requests
         with:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - name: Deploy merged PRs
+        run: |
+          git checkout stage
+          git push origin stage
