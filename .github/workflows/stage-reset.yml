@@ -34,7 +34,6 @@ jobs:
           git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
           git remote set-url origin https://github-actions:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}
           git checkout -b stage
-          git push -f origin stage
       # Runs a set of commands using the runners shell
       - name: Install node
         uses: actions/setup-node@v3
